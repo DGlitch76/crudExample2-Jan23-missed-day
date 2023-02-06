@@ -1,0 +1,23 @@
+<form method="POST" action="/recipes/new">
+  <label>
+    Title:
+    <input type="text" name="title" />
+  </label>
+  <label>
+    Ingredients:
+    <input type="text" name="ingredients" />
+  </label>
+  <label>
+    Cooking Time:
+    <input type="number" name="cookingTime" />
+  </label>
+  <label>
+    Difficulty:
+    <select name="difficulty">
+      <option value="easy">Easy</option>
+      <option value="medium" selected>Medium</option>
+      <option value="hard">Hard</option>
+    </select>
+  </label>
+  <button type="submit">Create new recipe</button>
+</form>

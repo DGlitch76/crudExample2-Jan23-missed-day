@@ -13,4 +13,16 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+router.get('/new', async (req, res, next) => {
+  res.render('recipes/new')
+})
+
+router.post('/new', async (req, res) => {
+  const body = req.body
+  console.log(body)
+  const newRecipe = await Recipe.create({ ...body, ingredients: body.ingredients.split(' ') })
+
+  res.redirect('/recipes')
+})
+
 module.exports = router
