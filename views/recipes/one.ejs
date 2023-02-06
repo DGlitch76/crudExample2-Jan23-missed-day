@@ -11,3 +11,8 @@
 <form method="POST" action="/recipes/<%- recipeFound._id %>/delete">
   <button type="submit">Delete</button>
 </form>
+<div>
+  <p>About the cook</p>
+  <h4><%= recipeFound.owner.firstname %></h4>
+  <p>Loving pet: <%= recipeFound.owner.dog %></p>
+</div>

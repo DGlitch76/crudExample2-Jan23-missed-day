@@ -1,5 +1,6 @@
 const express = require('express')
 const Recipe = require('../models/Recipe.model')
+const User = require('../models/User.model')
 const router = express.Router()
 
 /* GET all recipes */
@@ -18,14 +19,19 @@ router.get('/new', async (req, res, next) => {
 })
 
 router.get('/:recipeId', async (req, res) => {
-  const recipeFound = await Recipe.findById(req.params.recipeId)
+  const recipeFound = await Recipe.findById(req.params.recipeId).populate('owner')
+  console.log({ recipeFound })
   res.render('recipes/one', { recipeFound })
 })
 
 router.post('/new', async (req, res) => {
   const body = req.body
   console.log(body)
-  await Recipe.create({ ...body, ingredients: body.ingredients.split(' ') })
+  await Recipe.create({
+    ...body,
+    ingredients: body.ingredients.split(' '),
+    owner: '63e108a5cfca86248667cacf',
+  })
 
   res.redirect('/recipes')
 })

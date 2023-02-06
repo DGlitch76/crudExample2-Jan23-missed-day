@@ -20,6 +20,10 @@ const recipeSchema = new Schema(
       enum: ['easy', 'medium', 'hard'],
       required: true,
     },
+    owner: {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+    },
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`
