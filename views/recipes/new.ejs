@@ -1,23 +1,45 @@
-<form method="POST" action="/recipes/new">
+<form method="POST" action="<% if (update) { %>
+  /recipes/<%- recipe._id %>/update
+ <% } else { %>
+  /recipes/new
+<% } %>">
   <label>
     Title:
-    <input type="text" name="title" />
+    <input type="text" name="title" value="<% if (update) { %><%= recipe.title %><% } %>" />
   </label>
   <label>
     Ingredients:
-    <input type="text" name="ingredients" />
+    <input type="text" name="ingredients" value="<% if (update) { %><%= recipe.ingredients.join(' ') %><% } %>" />
   </label>
   <label>
     Cooking Time:
-    <input type="number" name="cookingTime" />
+    <input type="number" name="cookingTime" value="<% if (update) { %><%= recipe.cookingTime %><% } %>" />
   </label>
   <label>
     Difficulty:
     <select name="difficulty">
-      <option value="easy">Easy</option>
-      <option value="medium" selected>Medium</option>
-      <option value="hard">Hard</option>
+      <% if (update) { %>
+        <option value="easy" <% if (recipe.difficulty === 'easy') { %>
+       selected
+      <% } %>>Easy</option>
+      <option value="medium" <% if (recipe.difficulty === 'medium') { %>
+        selected
+       <% } %>>Medium</option>
+      <option value="hard" <% if (recipe.difficulty === 'hard') { %>
+        selected
+       <% } %>>Hard</option>
+       <% } else { %>
+        <option value="easy">Easy</option>
+         <option value="medium" selected>Medium</option>
+         <option value="hard">Hard</option>
+      <% } %>
     </select>
   </label>
-  <button type="submit">Create new recipe</button>
+  <button type="submit">
+    <% if (update) { %>
+      Update recipe
+    <% } else { %>
+      Create new recipe
+    <% } %>
+  </button>
 </form>

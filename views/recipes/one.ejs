@@ -1,0 +1,13 @@
+<h1>Recipe</h1>
+<h2><%= recipeFound.title %></h2>
+<h2><%= recipeFound.cookingTime %></h2>
+<h2><%= recipeFound.difficulty %></h2>
+<ul>
+  <% recipeFound.ingredients.forEach(ingredient => { %>
+  <li><%= ingredient %></li>
+  <% }) %>
+</ul>
+<a href="/recipes/<%- recipeFound._id %>/update">Modify</a>
+<form method="POST" action="/recipes/<%- recipeFound._id %>/delete">
+  <button type="submit">Delete</button>
+</form>
